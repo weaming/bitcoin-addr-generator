@@ -13,7 +13,9 @@ import (
 
 func main() {
 	// load our rand seed
-	random.InitRandSeed()
+	fortuna := random.NewFortunaWrap("./randomness")
+	defer fortuna.Close()
+	fortuna.Update()
 
 	// set mnenomic words list based on environment LANG
 	lang := os.Getenv("LANG")
