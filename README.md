@@ -52,3 +52,7 @@ Combined with the approach 3, the system security is leveled up.
 - Registered coin types for BIP-0044 [slips/slip-0044.md](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
 - [BIP39 - Mnemonic Code](https://iancoleman.io/bip39/#english)
 - [理解开发HD 钱包涉及的 BIP32、BIP44、BIP39](https://learnblockchain.cn/2018/09/28/hdwallet/)
+- [Bitcoin Private Key - BitcoinWiki](https://en.bitcoinwiki.org/wiki/Private_key)
+- [Base58Check encoding - Bitcoin Wiki](https://en.bitcoin.it/wiki/Base58Check_encoding)
+- [4. Keys, Addresses, Wallets - Mastering Bitcoin](https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/ch04.html)
+- [Cryptocurrency standards - Trezor Wiki](https://wiki.trezor.io/Cryptocurrency_standards)
