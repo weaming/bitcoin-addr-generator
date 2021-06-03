@@ -1,4 +1,4 @@
-## True random number
+## True random number generator
 
 Some facts of PRNG(Pseudo Random Number Generator)
 
@@ -28,7 +28,7 @@ Combined with the approach 3, the system security is leveled up.
 
 - [梅森旋转算法 - 维基百科](https://zh.wikipedia.org/wiki/%E6%A2%85%E6%A3%AE%E6%97%8B%E8%BD%AC%E7%AE%97%E6%B3%95) which is used in many languages and libraries.
 - [Random number generation - Wikipedia](https://en.wikipedia.org/wiki/Random_number_generation)
-    - Fortuna [random(4)](https://www.freebsd.org/cgi/man.cgi?query=random&apropos=0&sektion=4&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html)
+  - Fortuna [random(4)](https://www.freebsd.org/cgi/man.cgi?query=random&apropos=0&sektion=4&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html)
 - [bitaddress.org](https://www.bitaddress.org)
 
 ## Implement HD SegWit Wallet
@@ -43,7 +43,7 @@ Combined with the approach 3, the system security is leveled up.
 - Sha256, Base58, HMAC-SHA512
 - change addresses, return transaction change
 
-### References
+#### References
 
 - Mnemonic code for generating deterministic keys [bips/bip-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
 - Hierarchical Deterministic Wallets [bips/bip-0032](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
@@ -51,8 +51,22 @@ Combined with the approach 3, the system security is leveled up.
 - Segregated Witness [bips/bip-0141](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki)
 - Registered coin types for BIP-0044 [slips/slip-0044.md](https://github.com/satoshilabs/slips/blob/master/slip-0044.md)
 - [BIP39 - Mnemonic Code](https://iancoleman.io/bip39/#english)
-- [理解开发HD 钱包涉及的 BIP32、BIP44、BIP39](https://learnblockchain.cn/2018/09/28/hdwallet/)
+- [理解开发 HD 钱包涉及的 BIP32、BIP44、BIP39](https://learnblockchain.cn/2018/09/28/hdwallet/)
 - [Bitcoin Private Key - BitcoinWiki](https://en.bitcoinwiki.org/wiki/Private_key)
 - [Base58Check encoding - Bitcoin Wiki](https://en.bitcoin.it/wiki/Base58Check_encoding)
 - [4. Keys, Addresses, Wallets - Mastering Bitcoin](https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/ch04.html)
+
+### MultiSig
+
+- Block, Coinbase
+- TXIDs, UTXOs (cannot be spent for at least 100 blocks), Merkle Tree Root
+- SPV
+
+### References
+
 - [Cryptocurrency standards - Trezor Wiki](https://wiki.trezor.io/Cryptocurrency_standards)
+- [Developer Glossary - Bitcoin](https://btcinformation.org/en/developer-glossary)
+- [Script - Bitcoin Wiki](https://en.bitcoin.it/wiki/Script)
+- [Multi-signature - Bitcoin Wiki](https://en.bitcoin.it/wiki/Multi-signature)
+- [Pay to script hash - Bitcoin Wiki](https://en.bitcoin.it/wiki/Pay_to_script_hash)
+- Pay to Script Hash [bips/bip-0016](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)
