@@ -14,9 +14,9 @@ import (
 )
 
 var mnemonic = ""
+var fortuna = random.NewFortunaWrap("./randomness")
 
 type Request struct {
-	BIP  string
 	Path string
 }
 
@@ -26,37 +26,41 @@ type Response struct {
 }
 
 func handleHTTP(w http.ResponseWriter, r *http.Request) {
+	// update randomness
+	fortuna.Update()
+
 	req := &Request{}
 	err := json.NewDecoder(r.Body).Decode(req)
-	log.Printf("req: %+v", req)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, "parse request err: "+err.Error(), http.StatusBadRequest)
 		return
 	}
+	log.Printf("req: %+v", req)
 
-	indexes, e := bips.CheckHDPath(req.Path)
+	indexes, e := CheckHDPath(req.Path)
 	if e != nil {
 		http.Error(w, e.Error(), http.StatusBadRequest)
 		return
 	}
+	log.Println("indexes:", indexes)
 
 	var res *Response
-	switch req.BIP {
-	case "BIP44", "BIP0044":
+	switch indexes[0] {
+	case 44:
 		r, a, e := bips.BIP44(mnemonic, "", indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &Response{r, a}
-	case "BIP49", "BIP0049":
+	case 49:
 		r, a, e := bips.BIP49(mnemonic, "", indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &Response{r, a}
-	case "BIP84", "BIP0084":
+	case 84:
 		r, a, e := bips.BIP84(mnemonic, "", indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
@@ -78,7 +82,6 @@ func handleHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// load our rand seed
-	fortuna := random.NewFortunaWrap("./randomness")
 	defer fortuna.Close()
 	fortuna.Update()
 
@@ -95,6 +98,7 @@ func main() {
 	}
 
 	if os.Getenv("TEST") != "" {
+		// mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 		mnemonic = "scale unfair later desert panda boost clap van census advice liar bomb manual subway cruise swing virtual access pig topple midnight double vague expect"
 	}
 
