@@ -13,11 +13,11 @@ import (
 	"github.com/weaming/bitcoin-addr-generator/random"
 )
 
-var mnemonic = ""
 var fortuna = random.NewFortunaWrap("./randomness")
 
 type Request struct {
-	Path string
+	Mnemonic, Passphase string
+	Path                string
 }
 
 type Response struct {
@@ -35,6 +35,11 @@ func handleHTTP(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "parse request err: "+err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	if req.Mnemonic == "" && os.Getenv("TEST") != "" {
+		// mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+		req.Mnemonic = "scale unfair later desert panda boost clap van census advice liar bomb manual subway cruise swing virtual access pig topple midnight double vague expect"
+	}
 	log.Printf("req: %+v", req)
 
 	indexes, e := CheckHDPath(req.Path)
@@ -47,36 +52,36 @@ func handleHTTP(w http.ResponseWriter, r *http.Request) {
 	var res *Response
 	switch indexes[0] {
 	case 44:
-		r, a, e := bips.BIP44(mnemonic, "", indexes[len(indexes)-1])
+		r, a, e := bips.BIP44(req.Mnemonic, req.Passphase, indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &Response{r, a}
 	case 49:
-		r, a, e := bips.BIP49(mnemonic, "", indexes[len(indexes)-1])
+		r, a, e := bips.BIP49(req.Mnemonic, req.Passphase, indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &Response{r, a}
 	case 84:
-		r, a, e := bips.BIP84(mnemonic, "", indexes[len(indexes)-1])
+		r, a, e := bips.BIP84(req.Mnemonic, req.Passphase, indexes[len(indexes)-1])
 		if e != nil {
 			http.Error(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &Response{r, a}
 	default:
-		http.Error(w, "missing BIP", http.StatusBadRequest)
+		http.Error(w, "unknown BIP", http.StatusBadRequest)
 		return
 	}
-	w.Header().Add("Content-Type", "application/json")
 	out, e := json.Marshal(res)
 	if e != nil {
 		http.Error(w, e.Error(), http.StatusInternalServerError)
 		return
 	}
+	w.Header().Add("Content-Type", "application/json")
 	w.Write(out)
 }
 
@@ -95,11 +100,6 @@ func main() {
 			bip39.SetWordList(wl)
 			break
 		}
-	}
-
-	if os.Getenv("TEST") != "" {
-		// mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
-		mnemonic = "scale unfair later desert panda boost clap van census advice liar bomb manual subway cruise swing virtual access pig topple midnight double vague expect"
 	}
 
 	log.Println("serve on http://0.0.0.0:8080")
