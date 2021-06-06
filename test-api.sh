@@ -1,4 +1,5 @@
 #!/bin/bash
+# executable program `jq` is needed to run the script
 
 echo -e '\nBIP44'
 curl -s http://127.0.0.1:8080/api/hd-segwit-address -d "{\"path\": \"m/44'/1'/0'/0/1\"}" | jq

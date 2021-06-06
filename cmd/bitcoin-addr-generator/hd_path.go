@@ -10,6 +10,7 @@ import (
 // Apostrophe in the path indicates that BIP32 hardened derivation is used.
 var PathPat = regexp.MustCompile(`^m/(44|49|84)'/([01])'/(\d+)'/([01])/(\d+)$`)
 
+// Check Hierarchical Deterministic (HD) path string, return the error early if occurs.
 func CheckHDPath(keyPath string) ([]uint32, error) {
 	indexes := []uint32{}
 	xs := PathPat.FindStringSubmatch(keyPath)

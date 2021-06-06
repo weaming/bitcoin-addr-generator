@@ -92,7 +92,7 @@ type ResponseMultisigP2SHAddr struct {
 	Address string
 }
 
-var NArr = []byte{
+var OpArr = []byte{
 	0x00,
 	txscript.OP_1,
 	txscript.OP_2,
@@ -154,12 +154,12 @@ func handleMultisigP2SHAddr(w http.ResponseWriter, r *http.Request) {
 	res := &ResponseMultisigP2SHAddr{}
 	builder := txscript.NewScriptBuilder()
 
-	builder.AddOp(NArr[req.N])
+	builder.AddOp(OpArr[req.N])
 	for _, pk := range pks {
 		builder.AddData(pk.ScriptAddress())
 	}
 
-	builder.AddOp(NArr[len(req.PubKeys)])
+	builder.AddOp(OpArr[len(req.PubKeys)])
 	builder.AddOp(txscript.OP_CHECKMULTISIG)
 
 	redeemScript, e := builder.Script()
@@ -178,7 +178,7 @@ func handleMultisigP2SHAddr(w http.ResponseWriter, r *http.Request) {
 	httpJSON(w, res, 200)
 }
 
-// write error as JSON format and easy to replace the httpError function call.
+// Write error string which is wrapped in a JSON.
 func httpError(w http.ResponseWriter, err string, code int) {
 	w.Header().Add("Content-Type", "application/json")
 	out, e := json.Marshal(map[string]interface{}{"error": err})
@@ -188,7 +188,7 @@ func httpError(w http.ResponseWriter, err string, code int) {
 	w.Write(out)
 }
 
-// write error as JSON format and easy to replace the httpError function call.
+// Write something as JSON to the client.
 func httpJSON(w http.ResponseWriter, v interface{}, code int) {
 	out, e := json.Marshal(v)
 	if e != nil {

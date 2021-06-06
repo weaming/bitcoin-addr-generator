@@ -1,4 +1,9 @@
-## How to provide the seed onto this server
+This is the note on the learning path and organized by 3 questions in its' order.
+
+- Git clone this repo and run `go run ./cmd/bitcoin-addr-generator` to run the HTTP API server.
+- See the [test-api.sh](./test-api.sh) for examples to call the HTTP API.
+
+## 1. How to provide the seed onto this server
 
 1. Upload seed/mnemonic via the HTTP request
     - Pros: random seed provided by the client
@@ -9,7 +14,7 @@
 
 Both need the trust of client to the server.
 
-### Generate random number with unpredicatable generator
+### Generate random number with unpredictable generator
 
 Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna algorithm. It accept updates of randomness from the environment.
 
@@ -20,7 +25,7 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
 - [bitaddress.org](https://www.bitaddress.org)
 - Fortuna [random(4)](https://www.freebsd.org/cgi/man.cgi?query=random&apropos=0&sektion=4&manpath=FreeBSD+11.0-RELEASE+and+Ports&arch=default&format=html)
 
-## Generate HD SegWit Bitcoin Address
+## 2. Generate HD SegWit Bitcoin Address
 
 ### HD Wallet
 
@@ -122,8 +127,9 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
 - [Difference between SegWit and Legacy address](https://help.crypto.com/en/articles/4056348-send-and-receive-btc-ltc-difference-between-segwit-and-legacy-address)
 - [modood/btckeygen: A very simple and easy to use bitcoin(btc) key/wallet generator.](https://github.com/modood/btckeygen)
 
-## Generate n-out-of-m Multisig P2SH Bitcoin Address
+## 3. Generate n-out-of-m Multisig P2SH Bitcoin Address
 
+How does P2SH works:
 
 - fund to
     - redeem hash
