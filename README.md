@@ -27,15 +27,46 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
 
 ## 2. Generate HD SegWit Bitcoin Address
 
+For BTC, there is 3 types of address:
+
+1. Legacy (P2PKH): addresses start with a 1
+2. Nested SegWit (P2SH): addresses start with a 3
+3. Native SegWit (bech32): addresses start with bc1
+
 ### HD Wallet
 
 - ECDSA
 - secp256k1
 - chain code
-- extended private/public key
+- CDK funtions
+    - parent private key -> child private key: ok
+    - parent public key -> child public key: only for non-hardended child keys
+    - parent private key -> child public key:
+        1. parent private key -> child private key -> extended public key + extended "neutered" version private key: ok
+        2. parent private key -> extended public key + extended "neutered" version private key ?-> child private key: only for non-hardended child keys
+    - parent public key -> child private key: not possible
 - normal/hardended child key: With non-hardened keys, you can prove a child public key is linked to a parent public key using just the public keys. You can also derive public child keys from a public parent key, which enables watch-only wallets. With hardened child keys, you cannot prove that a child public key is linked to a parent public key.
 - CKDpriv; CKDpub(only for non-hardened child keys)
 - Sha256, Base58, HMAC-SHA512
+
+
+#### Graph for CKD functions
+
+```
+-- stands for works always
+·· stands for only for non-hardended key
+
+ parent pub ········CKDpub······>|-----------|
+                                 |           |
+                                 | child pub |
+                                 |           |
+ ext-priv + ext-pub ···CKDpub···>|-----------|
+          ^
+          |
+          N
+          |
+parent priv -----CKDpriv--------> child priv ---N--> ext-pub + ext-priv
+```
 
 #### References
 
