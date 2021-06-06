@@ -56,12 +56,14 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
         - version
             - set of rules
         - inputs 
-            - TXID
-            - vout
+            - outpoint
+                - TXID
+                - vout
             - signature script
         - outputs
-            - TXID
-            - Output index (vout)
+            - outpoint
+                - TXID (32 bytes)
+                - Output index number (vout, 4 bytes)
             - pubkey script
             - UTXOs (cannot be spent for at least 100 blocks)
             - Full Public Key
@@ -75,6 +77,7 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
     - unlocking script
         - scriptSig
         - witness
+        - redeemScript
     - witnessScript
 - all similar words found in bips repo: `ag 'P2[A-Z]*[KH]' -o | grep ':' | awk -F: '{print $3}' | sort | uniq`
     - P2PK: pay to public key
@@ -121,15 +124,23 @@ Library [fortuna](https://github.com/seehuhn/fortuna) implemented the Fortuna al
 
 ## Generate n-out-of-m Multisig P2SH Bitcoin Address
 
-### P2SH
+
+- fund to
+    - redeem hash
+- spend with
+    - redeem script
+    - signature script (sigScript)
+
+### Format of the example script
+
+- Locking Script `HASH160 <20-byte hash of redeem script> EQUAL`
+- Unlocking Script `0 Sig1 Sig2 <redeem script>`
+    - Redeem Script `2 PubKey1 PubKey2 PubKey3 PubKey4 PubKey5 5 CHECKMULTISIG`
 
 #### References
 
 - [Pay to script hash - Bitcoin Wiki](https://en.bitcoin.it/wiki/Pay_to_script_hash)
-- Pay to Script Hash [bips/bip-0016](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)
-
-### MultiSig
-
-#### References
-
+    - [bips/bip-0013.mediawiki at master · bitcoin/bips](https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki)
+    - Pay to Script Hash [bips/bip-0016](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)
 - [Multi-signature - Bitcoin Wiki](https://en.bitcoin.it/wiki/Multi-signature)
+- [Create Raw Multi-Sig P2SH Bitcoin Transaction in Golang](https://medium.com/coinmonks/build-p2sh-address-and-spend-its-fund-in-golang-1a03a4131512)
