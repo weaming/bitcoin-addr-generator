@@ -56,21 +56,21 @@ func handleHDSegwitAddr(w http.ResponseWriter, r *http.Request) {
 	var res *ResponseHDSegwitAddr
 	switch indexes[0] {
 	case 44:
-		r, a, e := bips.BIP44(req.Mnemonic, req.Passphrase, indexes[len(indexes)-1])
+		r, a, e := bips.BIP44(req.Mnemonic, req.Passphrase, indexes[2], indexes[3], indexes[4])
 		if e != nil {
 			httpError(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &ResponseHDSegwitAddr{r, a}
 	case 49:
-		r, a, e := bips.BIP49(req.Mnemonic, req.Passphrase, indexes[len(indexes)-1])
+		r, a, e := bips.BIP49(req.Mnemonic, req.Passphrase, indexes[2], indexes[3], indexes[4])
 		if e != nil {
 			httpError(w, e.Error(), http.StatusBadRequest)
 			return
 		}
 		res = &ResponseHDSegwitAddr{r, a}
 	case 84:
-		r, a, e := bips.BIP84(req.Mnemonic, req.Passphrase, indexes[len(indexes)-1])
+		r, a, e := bips.BIP84(req.Mnemonic, req.Passphrase, indexes[2], indexes[3], indexes[4])
 		if e != nil {
 			httpError(w, e.Error(), http.StatusBadRequest)
 			return

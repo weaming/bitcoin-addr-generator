@@ -43,13 +43,13 @@ func BIPCommon(mnemonic, passphrase string) (*KeyManager, *AddressRoot, error) {
 	}, nil
 }
 
-func BIP44(mnemonic, passphrase string, index uint32) (*AddressRoot, *Address, error) {
+func BIP44(mnemonic, passphrase string, account, change, index uint32) (*AddressRoot, *Address, error) {
 	km, addrRoot, e := BIPCommon(mnemonic, passphrase)
 	if e != nil {
 		return nil, nil, e
 	}
 
-	key, e := km.GetKey(PurposeBIP44, CoinTypeBTC, 0, 0, index)
+	key, e := km.GetKey(PurposeBIP44, CoinTypeBTC, account, change, index)
 	if e != nil {
 		return addrRoot, nil, e
 	}
@@ -66,13 +66,13 @@ func BIP44(mnemonic, passphrase string, index uint32) (*AddressRoot, *Address, e
 	}, nil
 }
 
-func BIP49(mnemonic, passphrase string, index uint32) (*AddressRoot, *Address, error) {
+func BIP49(mnemonic, passphrase string, account, change, index uint32) (*AddressRoot, *Address, error) {
 	km, addrRoot, e := BIPCommon(mnemonic, passphrase)
 	if e != nil {
 		return nil, nil, e
 	}
 
-	key, e := km.GetKey(PurposeBIP49, CoinTypeBTC, 0, 0, index)
+	key, e := km.GetKey(PurposeBIP49, CoinTypeBTC, account, change, index)
 	if e != nil {
 		return nil, nil, e
 	}
@@ -89,13 +89,13 @@ func BIP49(mnemonic, passphrase string, index uint32) (*AddressRoot, *Address, e
 	}, nil
 }
 
-func BIP84(mnemonic, passphrase string, index uint32) (*AddressRoot, *Address, error) {
+func BIP84(mnemonic, passphrase string, account, change, index uint32) (*AddressRoot, *Address, error) {
 	km, addrRoot, e := BIPCommon(mnemonic, passphrase)
 	if e != nil {
 		return nil, nil, e
 	}
 
-	key, e := km.GetKey(PurposeBIP84, CoinTypeBTC, 0, 0, index)
+	key, e := km.GetKey(PurposeBIP84, CoinTypeBTC, account, change, index)
 	if e != nil {
 		return nil, nil, e
 	}

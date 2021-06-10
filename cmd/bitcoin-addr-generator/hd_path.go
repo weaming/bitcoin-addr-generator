@@ -8,7 +8,8 @@ import (
 
 // path format: m / purpose' / coin_type' / account' / change / address_index
 // Apostrophe in the path indicates that BIP32 hardened derivation is used.
-var PathPat = regexp.MustCompile(`^m/(44|49|84)'/([01])'/(\d+)'/([01])/(\d+)$`)
+// var PathPat = regexp.MustCompile(`^m/(44|49|84)'/([01])'/(\d+)'/([01])/(\d+)$`) // support Testnet
+var PathPat = regexp.MustCompile(`^m/(44|49|84)'/([0])'/(\d+)'/([01])/(\d+)$`) // not support Testnet
 
 // Check Hierarchical Deterministic (HD) path string, return the error early if occurs.
 func CheckHDPath(keyPath string) ([]uint32, error) {

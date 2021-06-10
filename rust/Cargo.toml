@@ -10,3 +10,10 @@ edition = "2018"
 tide = "0.16.0"
 async-std = { version = "1.8.0", features = ["attributes"] }
 serde = { version = "1.0", features = ["derive"] }
+
+bitcoin-wallet = "1.1.0"
+# https://github.com/rust-bitcoin/rust-wallet/issues/25
+bitcoin = "0.21"
+regex = "1.5"
+lazy_static = "1.4.0"
+hex = "0.4.3"
