@@ -1,0 +1,66 @@
+
+BIP44
+{
+  "AddressRoot": {
+    "Mnemonic": "celery shove seek voice session inch practice rookie name garlic fatal sunset phrase lonely snap endorse pride total bottom ignore indicate puzzle flat help",
+    "Passphrase": "",
+    "Seed": "5396acf35613fdda05ef4892941989d57e46c60815bdadae6f69fb0231deb5e08854fb734fb3ce25055cd05f93280448af110d51d44c0eeaa703d1001e8901cb",
+    "RootPrivKey": "xprv9s21ZrQH143K4Tfzu3LEUzEmj88dGKKcH6MfYSP3dRv8F8JRQZvm9oMkdWnMPCGSRfrv9xDSwSx9DnSwchjCyTyW4Fsq4TYmy3uqDKWLNCP",
+    "RootPubKey": "xpub661MyMwAqRbcGwkU14sEr8BWH9y7fn3TeKHGLpnfBmT77vdZx7F1hbgEUmvosREQmBJZzZjkPuszXpLJdorJjZjgL56qJvfHvrt3noLhmYw"
+  },
+  "Address": {
+    "BIP": "BIP44",
+    "Path": "m/44'/0'/0'/0/1",
+    "WIF": "L2oMapbJXeeBj6m9xYeCLKU85X5G6zkNQczpgPPHhegNzSBmoTF6",
+    "Address": "1EtneN7mz8FmMgq2wJTh2vyFi75HDCptHk"
+  }
+}
+
+BIP49
+{
+  "AddressRoot": {
+    "Mnemonic": "save razor crawl interest doll muscle empty rural bid inside tattoo chronic thank pattern lab opinion emerge put summer fruit approve misery cloth tag",
+    "Passphrase": "",
+    "Seed": "7eb8214f9eb608fc789438c2fad8f29315778f3dcbf3c6c4662dcb6e6a82260faf3723725a06929b5dfac3bc21c0b7c64c071569ce9e304716eff6d8df61a389",
+    "RootPrivKey": "xprv9s21ZrQH143K3dASWhrG95XRkWpPXp56pHPP7P2CKt5MfaQzh3g3bfB6wT3mYTWuTXt4yWGoj7mcD7xNja8KGMZaQ9dmdw5RaWDnET3KsAD",
+    "RootPubKey": "xpub661MyMwAqRbcG7EucjPGWDUAJYeswGnxBWJyumRotDcLYNk9EazJ9TVanitiuhTVQwPkidwDaGMZt5Y51XGtgG3YWyuK8i5zQ6uPB3gN9zd"
+  },
+  "Address": {
+    "BIP": "BIP49",
+    "Path": "m/49'/0'/0'/0/1",
+    "WIF": "L4Zz837MwF4EipXAiaQsdtC5Bodhexo3used1XePUz73TYF4kj3C",
+    "SegwitNested": "35c8iEPBRZVbv9usF1X1148NrkKEpthhgZ"
+  }
+}
+
+BIP84
+{
+  "AddressRoot": {
+    "Mnemonic": "frame cabin invest marble hospital duty small evidence sense pond motor scrap speed casual crawl cream confirm tool pottery close broken cactus sunny cube",
+    "Passphrase": "",
+    "Seed": "c8daff7d90ce108525ee738a1a0f99366469dae0bd41a669701a694107a2020219445078eef47699e2911fbf6e8e1826f60d5d6655bc4f78b096b77900903c7c",
+    "RootPrivKey": "xprv9s21ZrQH143K3bUm8BHYXe8H7L28Rs6UM6Vu68WFDe7xQ9TP384dGLT3AaakfE4mXXVusbhercWEVZ8Mffo8vVeeDeUne7MNJxHeyMi9Zdm",
+    "RootPubKey": "xpub661MyMwAqRbcG5ZEECpYtn51fMrcqKpKiKRVtWurmyewGwnXafNsp8mX1rgntFeq7Y8YX6u2PoZQ9ufTA3ZkqsgNBTWpAZbSTZ1SyeDTiih"
+  },
+  "Address": {
+    "BIP": "BIP84",
+    "Path": "m/84'/0'/0'/0/1",
+    "WIF": "L489FAir4ojaimch41L34xqcz2EdFSQnxLbMD8wBfzLf7bsZPsXD",
+    "SegwitBech32": "bc1qss6ff7jmcr6dqjhj6c7wmdk8etyj5v890yd3ze"
+  }
+}
+
+MultiSig P2SH bad request 1
+{
+  "error": "need at least 2 public keys"
+}
+
+MultiSig P2SH bad request 2
+{
+  "error": "N should not be greater than the number of public keys"
+}
+
+MultiSig P2SH good request
+{
+  "Address": "39gUtkRrX7nGFBHFzBz4t8VCPXwLYPiRaw"
+}
