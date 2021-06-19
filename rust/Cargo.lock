@@ -369,6 +369,7 @@ dependencies = [
  "bitcoin",
  "bitcoin-wallet",
  "hex 0.4.3",
+ "http-types",
  "lazy_static",
  "regex",
  "serde",

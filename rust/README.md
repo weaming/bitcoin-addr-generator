@@ -11,3 +11,7 @@
 - [Field attributes · Serde](https://serde.rs/field-attrs.html)
 
 ## 3. Generate n-out-of-m Multisig P2SH Bitcoin Address
+
+### References
+
+- [p2sh-examples/cltv.rs](https://github.com/bl4ck5un/p2sh-examples/blob/master/src/cltv.rs)
